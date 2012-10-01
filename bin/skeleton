@@ -6,13 +6,15 @@ use Skeleton\Skeleton;
 use Skeleton\SkeletonAwareInterface;
 use Symfony\Component\Console\Application;
 
+$root       = __DIR__.'/../';
+
 // Check the status of the skeleton
 $isReset    = isset($_SERVER['argv'][1]) && ('reset' === $_SERVER['argv'][1]);
-$isNew      = !file_exists(__DIR__.'/vendor/autoload.php');
+$isNew      = !file_exists($root.'/vendor/autoload.php');
 
 // Remove existing vendors
 if ($isReset) {
-    passthru(sprintf('rm -rf %s/vendor', __DIR__));
+    passthru(sprintf('rm -rf %s/vendor', $root));
 }
 
 // Phar files have issues with detect_unicode on
@@ -20,8 +22,8 @@ $interpreter    = 'php -d detect_unicode=Off';
 
 // Dependencies
 $commands       = array(
-    sprintf('curl -s http://getcomposer.org/installer | %s -- %s', $interpreter, __DIR__)   => $isNew,
-    sprintf('%s %s/composer.phar install --dev', $interpreter, __DIR__)                     => $isNew || $isReset,
+    sprintf('curl -s http://getcomposer.org/installer | %s -- %s', $interpreter, $root) => $isNew,
+    sprintf('%s %s/composer.phar install --dev', $interpreter, $root)                   => $isNew || $isReset,
 );
 
 // Install dependencies
@@ -43,11 +45,11 @@ if ($isReset) {
 }
 
 // Load Composer autoloader
-require __DIR__.'/vendor/autoload.php';
+require $root.'/vendor/autoload.php';
 
 // Start the skeleton!
 $console    = new Application('WordPress Skeleton', '0.1');
-$skeleton   = new Skeleton(__DIR__.'/config/skeleton.yml');
+$skeleton   = new Skeleton($root.'/config/skeleton.yml');
 $commands   = array(
     new Command\ConfigureSkeletonCommand('configure'),
     new Command\GenerateSkeletonCommand('generate'),

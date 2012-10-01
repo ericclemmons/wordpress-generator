@@ -1,5 +1,2 @@
-.DS_Store
-/.vagrant
-/backups
-/composer.phar
+composer.phar
 /vendor
