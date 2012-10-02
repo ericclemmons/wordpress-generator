@@ -6,50 +6,12 @@ use Skeleton\Skeleton;
 use Skeleton\SkeletonAwareInterface;
 use Symfony\Component\Console\Application;
 
-$root       = __DIR__.'/../';
-
-// Check the status of the skeleton
-$isReset    = isset($_SERVER['argv'][1]) && ('reset' === $_SERVER['argv'][1]);
-$isNew      = !file_exists($root.'/vendor/autoload.php');
-
-// Remove existing vendors
-if ($isReset) {
-    passthru(sprintf('rm -rf %s/vendor', $root));
-}
-
-// Phar files have issues with detect_unicode on
-$interpreter    = 'php -d detect_unicode=Off';
-
-// Dependencies
-$commands       = array(
-    sprintf('curl -s http://getcomposer.org/installer | %s -- %s', $interpreter, $root) => $isNew,
-    sprintf('%s %s/composer.phar install --dev', $interpreter, $root)                   => $isNew || $isReset,
-);
-
-// Install dependencies
-foreach ($commands as $command => $install) {
-    if ($install) {
-        passthru($command, $error);
-
-        if ($error) {
-            throw new \Exception(sprintf('"%s" failed: [%s]', $command, $error));
-
-            return 1;
-        }
-    }
-}
-
-// Skip the rest of the console
-if ($isReset) {
-    return 0;
-}
-
 // Load Composer autoloader
-require $root.'/vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 // Start the skeleton!
 $console    = new Application('WordPress Skeleton', '0.1');
-$skeleton   = new Skeleton($root.'/config/skeleton.yml');
+$skeleton   = new Skeleton(__DIR__.'/../config/skeleton.yml');
 $commands   = array(
     new Command\ConfigureSkeletonCommand('configure'),
     new Command\GenerateSkeletonCommand('generate'),

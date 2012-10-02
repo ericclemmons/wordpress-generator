@@ -8,7 +8,8 @@ files specific to WordPress, Vagrant, & Capistrano.
 Installation
 ------------
 
-_Installation is automatically performed by [Composer][2] when using the skeleton._
+_This package is meant to be added to your `composer.json` as a depdendency
+and not installed directly_
 
 
 Usage
