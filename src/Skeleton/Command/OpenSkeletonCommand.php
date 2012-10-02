@@ -14,7 +14,7 @@ class OpenSkeletonCommand extends SkeletonCommand
     protected function configure()
     {
         $this
-            ->setDescription('Opens the skeleton in your default browser (Default: <command>local</command>')
+            ->setDescription('Opens the skeleton in your default browser (Default: <command>local</command>)')
             ->setDefinition(array(
                 new InputOption('env', '', InputOption::VALUE_REQUIRED, 'Environment to use settings for', 'local')
             ))
