@@ -22,5 +22,5 @@
         "symfony/yaml":             "2.1.*"
     },
 
-    "bin": ["bin/skeleton"]
+    "bin":                          ["bin/skeleton"]
 }

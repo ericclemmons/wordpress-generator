@@ -6,12 +6,14 @@ use Skeleton\Skeleton;
 use Skeleton\SkeletonAwareInterface;
 use Symfony\Component\Console\Application;
 
+$root = realpath(dirname($_SERVER["SCRIPT_FILENAME"]).'/../');
+
 // Load Composer autoloader
-require __DIR__.'/../vendor/autoload.php';
+require $root.'/vendor/autoload.php';
 
 // Start the skeleton!
 $console    = new Application('WordPress Skeleton', '0.1');
-$skeleton   = new Skeleton(__DIR__.'/../config/skeleton.yml');
+$skeleton   = new Skeleton($root.'/config/skeleton.yml');
 $commands   = array(
     new Command\ConfigureSkeletonCommand('configure'),
     new Command\GenerateSkeletonCommand('generate'),
