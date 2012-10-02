@@ -20,5 +20,9 @@
         "php":                      ">=5.3.3",
         "symfony/console":          "2.1.*",
         "symfony/yaml":             "2.1.*"
+    },
+
+    "config": {
+        "bin-dir": "bin"
     }
 }
