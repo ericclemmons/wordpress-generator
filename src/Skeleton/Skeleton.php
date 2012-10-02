@@ -8,12 +8,15 @@ use Symfony\Component\Yaml\Yaml;
 
 class Skeleton
 {
+    private $root;
+
     private $config;
 
     private $configPath;
 
-    public function __construct($configPath)
+    public function __construct($root, $configPath)
     {
+        $this->root         = realpath($root);
         $this->configPath   = $configPath;
         $this->generator    = new Generator($this, __DIR__.'/Resources/skeleton', $this->getRoot());
 
@@ -66,7 +69,7 @@ class Skeleton
 
     public function getRoot()
     {
-        return realpath(__DIR__.'/../../');
+        return $this->root;
     }
 
     public function getWebRoot()
@@ -120,5 +123,12 @@ class Skeleton
     public function setConfig(array $config)
     {
         $this->config = $config;
+    }
+
+    public function setRoot($root)
+    {
+        $this->root = $root;
+
+        return $this;
     }
 }

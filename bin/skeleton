@@ -13,7 +13,7 @@ require $root.'/vendor/autoload.php';
 
 // Start the skeleton!
 $console    = new Application('WordPress Skeleton', '0.1');
-$skeleton   = new Skeleton($root.'/config/skeleton.yml');
+$skeleton   = new Skeleton($root, $root.'/config/skeleton.yml');
 $commands   = array(
     new Command\ConfigureSkeletonCommand('configure'),
     new Command\GenerateSkeletonCommand('generate'),
