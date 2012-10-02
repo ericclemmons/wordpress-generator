@@ -1,10 +1,10 @@
 Vagrant::Config.run do |config|
   config.vm.box       = "lucid32"
   config.vm.box_url   = "http://files.vagrantup.com/lucid32.box"
-  config.vm.host_name = "{{deploy.local.web.host}}"
+  config.vm.host_name = "{{deploy.vagrant.web.host}}"
 
   # Dedicated IP to avoid conflicts (and no port fowarding!)
-  config.vm.network :hostonly, "{{deploy.local.web.ip}}"
+  config.vm.network :hostonly, "{{deploy.vagrant.web.ip}}"
 
   # Mount the src folder as NFS for caching & speed
   config.vm.share_folder("v-root", "/vagrant", ".", :nfs => true)
@@ -12,6 +12,6 @@ Vagrant::Config.run do |config|
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = ["config/cookbooks", "vendor/opscode-cookbooks"]
 
-    chef.add_recipe("{{deploy.local.web.host}}");
+    chef.add_recipe("{{deploy.vagrant.web.host}}");
   end
 end

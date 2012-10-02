@@ -1,9 +1,9 @@
-role :web,                  "{{deploy.local.web.host}}"
+role :web,                  "{{deploy.vagrant.web.host}}"
 
 set :deploy_to,             "/var/www/#{stage}.#{application}"
 
-set :user,                  "{{deploy.local.web.user}}"
-set :password,              "{{deploy.local.web.password}}"
+set :user,                  "{{deploy.vagrant.web.user}}"
+set :password,              "{{deploy.vagrant.web.password}}"
 
 # Disable shared children since we're symlinking to a real location
 set :shared_children,       []

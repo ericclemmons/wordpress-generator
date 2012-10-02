@@ -48,11 +48,11 @@ class ConfigureSkeletonCommand extends SkeletonCommand
             '',
         ));
 
-        // Initial Skeleton with local environment
+        // Initial Skeleton with vagrant environment
         $this->config = $this->askProjectInformation($input, $output);
         $this->config += array(
             'wordpress'             => array(
-                'local'             => array(
+                'vagrant'           => array(
                     'salts'         => $this->guessSalts(),
                     'admin'         => array(
                         'user'      => 'vagrant',
@@ -60,7 +60,7 @@ class ConfigureSkeletonCommand extends SkeletonCommand
                         'email'     => '',
                     ),
                     'db'            => array(
-                        'name'      => 'wordpress_local',
+                        'name'      => 'wordpress_vagrant',
                         'user'      => 'vagrant',
                         'password'  => 'vagrant',
                         'host'      => 'localhost',
@@ -68,10 +68,10 @@ class ConfigureSkeletonCommand extends SkeletonCommand
                 ),
             ),
             'deploy'                => array(
-                'local'             => array(
+                'vagrant'           => array(
                     'web'           => array(
-                        'host'      => 'local.'.$this->config['domain'],
-                        'ip'        => $this->skeleton->get('deploy.local.web.ip') ?: $this->guessIp('local.'.$this->config['domain']),
+                        'host'      => 'vagrant.'.$this->config['domain'],
+                        'ip'        => $this->skeleton->get('deploy.vagrant.web.ip') ?: $this->guessIp('vagrant.'.$this->config['domain']),
                         'user'      => 'vagrant',
                         'password'  => 'vagrant',
                     ),

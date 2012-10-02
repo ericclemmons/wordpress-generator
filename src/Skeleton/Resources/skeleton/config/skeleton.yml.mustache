@@ -19,24 +19,24 @@ repository:                             {{repository}}
 #   WordPress' wp-config.php settings & plugins for each environment
 ##
 wordpress:
-    # Local (Vagrant) development environment
-    local:
+    # Vagrant development environment
+    vagrant:
         # See: https://api.wordpress.org/secret-key/1.1/salt/
         salts:  |
-            {{wordpress.local.salts}}
+            {{wordpress.vagrant.salts}}
 
         # Admin user
         admin:
-            user:                       {{wordpress.local.admin.user}}
-            password:                   {{wordpress.local.admin.password}}
-            email:                      {{wordpress.local.admin.email}}
+            user:                       {{wordpress.vagrant.admin.user}}
+            password:                   {{wordpress.vagrant.admin.password}}
+            email:                      {{wordpress.vagrant.admin.email}}
 
         # Limited DB user with WordPress-only permissions (no GRANT/CREATE/DROP)
         db:
-            host:                       {{wordpress.local.db.host}}
-            name:                       {{wordpress.local.db.name}}
-            user:                       {{wordpress.local.db.user}}
-            password:                   {{wordpress.local.db.password}}
+            host:                       {{wordpress.vagrant.db.host}}
+            name:                       {{wordpress.vagrant.db.name}}
+            user:                       {{wordpress.vagrant.db.user}}
+            password:                   {{wordpress.vagrant.db.password}}
 
         # WordPress plugins installed & updated (as needed) with each deployment
         plugins:
@@ -83,18 +83,18 @@ wordpress:
 #   Capistrano deployment settings for each environment
 ##
 deploy:
-    local:
+    vagrant:
         # SSH connection setttings for deployment
         web:
-            host:                       {{deploy.local.web.host}}
-            ip:                         {{deploy.local.web.ip}}
-            user:                       {{deploy.local.web.user}}
-            password:                   {{deploy.local.web.password}}
+            host:                       {{deploy.vagrant.web.host}}
+            ip:                         {{deploy.vagrant.web.ip}}
+            user:                       {{deploy.vagrant.web.user}}
+            password:                   {{deploy.vagrant.web.password}}
 
         # Admin DB user for wordpress.[env].db.host with CREATE/DROP permissions
         db:
-            user:                       {{deploy.local.db.user}}
-            password:                   {{deploy.local.db.password}}
+            user:                       {{deploy.vagrant.db.user}}
+            password:                   {{deploy.vagrant.db.password}}
     staging:
         web:
             host:                       {{deploy.staging.web.host}}

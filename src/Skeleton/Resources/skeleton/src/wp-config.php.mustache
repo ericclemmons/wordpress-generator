@@ -16,32 +16,32 @@
 
 /** The name of the environment to pivot settings off of (defaults to 'prod') **/
 define('WP_ENV', getenv('WP_ENV') ?: array_search($_SERVER['HTTP_HOST'], array(
-    'local'     => '{{deploy.local.web.host}}',
+    'vagrant'   => '{{deploy.vagrant.web.host}}',
     'staging'   => '{{deploy.staging.web.host}}',
 )) ?: 'prod');
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define('DB_NAME', array_search(WP_ENV, array(
-    '{{wordpress.local.db.name}}'   => 'local',
+    '{{wordpress.vagrant.db.name}}' => 'vagrant',
     '{{wordpress.staging.db.name}}' => 'staging',
 )) ?: '{{wordpress.prod.db.name}}');
 
 /** MySQL database username */
 define('DB_USER', array_search(WP_ENV, array(
-    '{{wordpress.local.db.user}}'   => 'local',
+    '{{wordpress.vagrant.db.user}}' => 'vagrant',
     '{{wordpress.staging.db.user}}' => 'staging',
 )) ?: '{{wordpress.prod.db.user}}');
 
 /** MySQL database password */
 define('DB_PASSWORD', array_search(WP_ENV, array(
-    '{{wordpress.local.db.password}}'   => 'local',
+    '{{wordpress.vagrant.db.password}}' => 'vagrant',
     '{{wordpress.staging.db.password}}' => 'staging',
 )) ?: '{{wordpress.prod.db.password}}');
 
 /** MySQL hostname */
 define('DB_HOST', array_search(WP_ENV, array(
-    '{{wordpress.local.db.host}}'   => 'local',
+    '{{wordpress.vagrant.db.host}}' => 'vagrant',
     '{{wordpress.staging.db.host}}' => 'staging',
 )) ?: '{{wordpress.prod.db.host}}');
 
@@ -61,8 +61,8 @@ define('DB_COLLATE', '');
  * @since 2.6.0
  */
 switch (WP_ENV) {
-    case 'local':
-            {{wordpress.local.salts}}
+    case 'vagrant':
+            {{wordpress.vagrant.salts}}
         break;
 
     case 'staging':
@@ -100,7 +100,7 @@ define('WPLANG', '');
  * It is strongly recommended that plugin and theme developers use WP_DEBUG
  * in their development environments.
  */
-define('WP_DEBUG', in_array(WP_ENV, array('local', 'staging')));
+define('WP_DEBUG', in_array(WP_ENV, array('vagrant', 'staging')));
 
 /* That's all, stop editing! Happy blogging. */
 
