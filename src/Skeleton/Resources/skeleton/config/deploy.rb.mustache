@@ -54,7 +54,7 @@ end
 
 after "deploy:finalize_update" do
     pretty_print "Loading WordPress Skeleton"
-    run "cd #{latest_release} && ./skeleton"
+    run "cd #{latest_release} && ./bin/skeleton"
     puts_ok
 end
 
