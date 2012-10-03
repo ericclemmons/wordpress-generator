@@ -24,8 +24,8 @@ class InstallPluginsWordPressCommand extends SkeletonCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $env    = Validators::validateEnv($input->getOption('env'));
-        $root   = realpath(__DIR__.'/../../../web');
+        $env        = Validators::validateEnv($input->getOption('env'));
+        $root       = $this->skeleton->getWebRoot();
         $plugins    = $this->skeleton->get(sprintf('wordpress.%s.plugins', $env));
 
         require $root.'/wp-load.php';
