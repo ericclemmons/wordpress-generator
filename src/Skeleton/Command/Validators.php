@@ -30,7 +30,7 @@ class Validators
             throw new \InvalidArgumentException('Env must be defined');
         }
 
-        $path = realpath(__DIR__.'/../../../config/skeleton.yml');
+        $path = realpath(dirname($_SERVER["SCRIPT_FILENAME"]).'/../config/skeleton.yml');
 
         if (!$path) {
             throw new \Exception('Could not find skeleton.yml');
