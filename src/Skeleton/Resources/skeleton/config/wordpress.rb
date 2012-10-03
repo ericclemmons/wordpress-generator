@@ -5,21 +5,21 @@ namespace :wp do
         desc "Creates WordPress database"
         task :create do
             pretty_print "Creating database"
-            run "#{latest_release}/skeleton wp:db:create --env=#{stage}"
+            run "#{latest_release}/bin/skeleton wp:db:create --env=#{stage}"
             puts_ok
         end
 
         desc "Drops WordPress database"
         task :drop do
             pretty_print "Dropping database"
-            run "#{latest_release}/skeleton wp:db:drop --env=#{stage}"
+            run "#{latest_release}/bin/skeleton wp:db:drop --env=#{stage}"
             puts_ok
         end
 
         desc "Backups database locally to /backups directory"
         task :backup do
             pretty_print "Backing up database"
-            run "#{latest_release}/skeleton wp:db:backup --env=#{stage}"
+            run "#{latest_release}/bin/skeleton wp:db:backup --env=#{stage}"
             puts_ok
 
             set :backups_path,      "#{current_release}/backups"
@@ -47,7 +47,7 @@ namespace :wp do
                 puts_ok
 
                 pretty_print "Restoring database backup"
-                run "#{latest_release}/skeleton wp:db:restore --env=#{stage} --file=#{restore_path}"
+                run "#{latest_release}/bin/skeleton wp:db:restore --env=#{stage} --file=#{restore_path}"
                 puts_ok
 
                 pretty_print "Cleaning up restore files"
@@ -61,7 +61,7 @@ namespace :wp do
         desc "Imports the Theme Unit Test into WordPress"
         task :theme_test do
             pretty_print "Importing WordPress Theme Unit Test"
-            run "#{latest_release}/skeleton wp:import:theme-test --env=#{stage}"
+            run "#{latest_release}/bin/skeleton wp:import:theme-test --env=#{stage}"
             puts_ok
         end
     end
@@ -69,7 +69,7 @@ namespace :wp do
     desc "Installs WordPress similar to /wp-admin/install.php"
     task :install do
         pretty_print "Installing WordPress"
-        run "#{latest_release}/skeleton wp:install --env=#{stage}"
+        run "#{latest_release}/bin/skeleton wp:install --env=#{stage}"
         puts_ok
     end
 
@@ -77,7 +77,7 @@ namespace :wp do
         desc "Installs & activates plugins based on skeleton config"
         task :install do
             pretty_print "Installing WordPress plugins"
-            run "#{latest_release}/skeleton wp:plugins:install --env=#{stage}"
+            run "#{latest_release}/bin/skeleton wp:plugins:install --env=#{stage}"
             puts_ok
         end
     end
@@ -107,7 +107,7 @@ namespace :wp do
         desc "Activates theme"
         task :activate do
             pretty_print "Activating theme"
-            run "#{latest_release}/skeleton wp:theme:activate --env=#{stage}"
+            run "#{latest_release}/bin/skeleton wp:theme:activate --env=#{stage}"
             puts_ok
         end
 
