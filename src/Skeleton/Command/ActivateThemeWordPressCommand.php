@@ -24,7 +24,7 @@ class ActivateThemeWordpressCommand extends SkeletonCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $env    = Validators::validateEnv($input->getOption('env'));
-        $root   = realpath(__DIR__.'/../../../web');
+        $root   = $this->skeleton->getWebRoot();
         $theme  = $input->getOption('theme') ?: $this->skeleton->get('domain');
 
         require $root.'/wp-load.php';
