@@ -1,5 +1,5 @@
 load 'deploy'
 
-Dir['vendor/**/recipes/*.rb'].each { |recipe| load(recipe) }
+Dir['vendor/**/capistrano/*.rb'].each { |recipe| load(recipe) }
 
 load 'config/deploy'
