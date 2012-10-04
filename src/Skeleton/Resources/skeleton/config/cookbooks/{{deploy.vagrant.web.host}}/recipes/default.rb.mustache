@@ -6,6 +6,9 @@ include_recipe "php"
 include_recipe "php::module_mysql"
 include_recipe "apache2::mod_php5"
 
+package "curl"
+package "git"
+
 # Enable VirtualDocumentRoot
 apache_module "vhost_alias"
 
