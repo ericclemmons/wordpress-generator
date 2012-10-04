@@ -23,15 +23,15 @@ class ActivateThemeWordpressCommand extends SkeletonCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $env    = Validators::validateEnv($input->getOption('env'));
-        $root   = $this->skeleton->getWebRoot();
-        $theme  = $input->getOption('theme') ?: $this->skeleton->get('domain');
+        $env        = Validators::validateEnv($input->getOption('env'));
+        $root       = $this->skeleton->getWebRoot();
+        $stylesheet = $input->getOption('theme') ?: $this->skeleton->get('domain');
 
         require $root.'/wp-load.php';
 
-        $output->write(sprintf('Activating theme <comment>%s</comment>...', $theme));
+        $output->write(sprintf('Activating theme <comment>%s</comment>...', $stylesheet));
 
-        switch_theme($theme);
+        switch_theme('_s', $stylesheet);
 
         $output->writeln('<info>DONE</info>');
     }
