@@ -52,12 +52,7 @@ before "deploy:update_code" do
   end
 end
 
-after "deploy:finalize_update" do
-    pretty_print "Loading WordPress Skeleton"
-    run "cd #{latest_release} && ./bin/skeleton"
-    puts_ok
-end
-
+after "deploy:finalize_update", "skeleton:install"
 after "deploy:finalize_update", "wp:symlink"
 
 after "deploy:update",          "wp:plugins:install"
