@@ -57,6 +57,16 @@ namespace :wp do
         end
     end
 
+    desc "Ensures shared children are writable"
+    task :fix_permissions do
+        pretty_print "Fixing permissions"
+
+        dirs = shared_children.map { |d| File.join(latest_release, d) }
+        run "#{try_sudo} chmod 755 #{dirs.join(' ')}"
+
+        puts_ok
+    end
+
     namespace :import do
         desc "Imports the Theme Unit Test into WordPress"
         task :theme_test do

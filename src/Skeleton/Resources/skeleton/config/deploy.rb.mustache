@@ -54,6 +54,7 @@ end
 
 after "deploy:finalize_update", "skeleton:install"
 after "deploy:finalize_update", "wp:symlink"
+after "deploy:finalize_update", "wp:fix_permissions"
 
 after "deploy:update",          "wp:plugins:install"
 after "deploy:update",          "wp:theme:activate"
