@@ -62,7 +62,7 @@ namespace :wp do
         pretty_print "Fixing permissions"
 
         dirs = shared_children.map { |d| File.join(latest_release, d) }
-        run "#{try_sudo} chmod 755 #{dirs.join(' ')}"
+        run "#{try_sudo} chmod 777 #{dirs.join(' ')}"
 
         puts_ok
     end
